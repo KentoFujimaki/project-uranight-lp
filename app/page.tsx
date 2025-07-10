@@ -23,7 +23,7 @@ const MotionSection: FC<{ children: React.ReactNode; className?: string }> = ({ 
 
 export default function UranightLandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#1F224B] via-[#4A3A70] to-[#6B4F9B] text-white font-noto">
+    <div className="flex flex-col min-h-screen text-white font-noto relative">
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
         {Array.from({ length: typeof window !== 'undefined' && window.innerWidth < 768 ? 30 : 100 }).map((_, i) => (
           <div
@@ -44,17 +44,21 @@ export default function UranightLandingPage() {
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative text-center py-24 md:py-32 px-4 flex flex-col items-center min-h-[80vh] justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-aurora opacity-30"></div>
+          <div className="absolute inset-0 bg-aurora">
+            <div className="aurora-layer aurora-layer-1"></div>
+            <div className="aurora-layer aurora-layer-2"></div>
+            <div className="aurora-layer aurora-layer-3"></div>
+          </div>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <h1 className="font-julius text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider">Uranight</h1>
-            <p className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200">あなたの夜空に運命の星を</p>
+            <h1 className="font-julius text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[4px] text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] drop-shadow-[0_0_60px_rgba(200,180,255,0.3)]">Uranight</h1>
+            <p className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-light">あなたの夜空に運命の星を</p>
           </motion.div>
           <motion.p
-            className="mt-8 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-gray-300 px-4"
+            className="mt-8 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-gray-300 px-4 font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -97,7 +101,7 @@ export default function UranightLandingPage() {
         </section>
 
         {/* Features Section */}
-        <MotionSection className="py-20 px-4 bg-[#1F224B]/50">
+        <MotionSection className="py-20 px-4 bg-black/20 backdrop-blur-sm">
           <div className="container mx-auto text-center">
             <h2 className="font-julius text-2xl sm:text-3xl md:text-4xl">あなただけの愛の物語を紐解く</h2>
             <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
@@ -151,7 +155,7 @@ export default function UranightLandingPage() {
         </MotionSection>
 
         {/* How to Use Section */}
-        <MotionSection className="py-20 px-4 bg-[#1F224B]/50">
+        <MotionSection className="py-20 px-4 bg-black/20 backdrop-blur-sm">
           <div className="container mx-auto text-center">
             <h2 className="font-julius text-2xl sm:text-3xl md:text-4xl">簡単3ステップで始める</h2>
             <div className="relative mt-16 max-w-4xl mx-auto">
@@ -203,7 +207,7 @@ export default function UranightLandingPage() {
         </MotionSection>
       </main>
 
-      <footer className="text-center py-8 px-4 bg-black/20">
+      <footer className="text-center py-8 px-4 bg-black/30 backdrop-blur-sm">
         <p className="font-julius text-lg">Uranight</p>
         <div className="flex justify-center space-x-6 mt-4 text-sm text-gray-400">
           <a href="#" className="hover:text-white transition-colors">

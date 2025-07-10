@@ -12,7 +12,7 @@ const julius = Julius_Sans_One({
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "700"],
   variable: "--font-noto-sans-jp",
 })
 

@@ -17,8 +17,45 @@ body {
     font-family: var(--font-noto-sans-jp), sans-serif;
   }
   .bg-aurora {
-    background: radial-gradient(ellipse at 50% 30%, rgba(107, 79, 155, 0.5) 0%, rgba(107, 79, 155, 0) 70%);
-    animation: aurora-glow 10s infinite alternate;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .aurora-layer {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.7;
+  }
+  
+  .aurora-layer-1 {
+    width: 60%;
+    height: 60%;
+    top: -20%;
+    left: -10%;
+    background: rgba(120, 100, 220, 0.2);
+    animation: aurora-rotate-1 15s infinite linear;
+  }
+  
+  .aurora-layer-2 {
+    width: 50%;
+    height: 50%;
+    top: 20%;
+    right: -15%;
+    background: rgba(220, 150, 200, 0.15);
+    animation: aurora-rotate-2 20s infinite linear;
+  }
+  
+  .aurora-layer-3 {
+    width: 70%;
+    height: 70%;
+    bottom: -30%;
+    left: 10%;
+    background: rgba(100, 200, 220, 0.1);
+    animation: aurora-rotate-3 25s infinite linear;
   }
   .twinkle-star {
     animation-name: twinkle;
@@ -31,7 +68,7 @@ body {
       animation: none;
       opacity: 0.5;
     }
-    .bg-aurora {
+    .aurora-layer {
       animation: none;
     }
   }
@@ -115,7 +152,9 @@ body {
   body {
     @apply bg-background text-foreground;
     background-color: #1f224b; /* Fallback */
-    background-image: linear-gradient(270deg, #f7c8b0 0%, #6b4f9b 50%, #1f224b 100%);
+    background-image: linear-gradient(270deg, #1f224b 0%, #6b4f9b 50%, #f7c8b0 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }
 
@@ -131,11 +170,29 @@ body {
   }
 }
 
-@keyframes aurora-glow {
+@keyframes aurora-rotate-1 {
   from {
-    transform: scale(1);
+    transform: rotate(0deg) translateX(20px);
   }
   to {
-    transform: scale(1.5);
+    transform: rotate(360deg) translateX(20px);
+  }
+}
+
+@keyframes aurora-rotate-2 {
+  from {
+    transform: rotate(0deg) translateY(-20px);
+  }
+  to {
+    transform: rotate(360deg) translateY(-20px);
+  }
+}
+
+@keyframes aurora-rotate-3 {
+  from {
+    transform: rotate(0deg) translateX(-20px);
+  }
+  to {
+    transform: rotate(360deg) translateX(-20px);
   }
 }
