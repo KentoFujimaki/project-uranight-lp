@@ -25,6 +25,16 @@ body {
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
   }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .twinkle-star {
+      animation: none;
+      opacity: 0.5;
+    }
+    .bg-aurora {
+      animation: none;
+    }
+  }
 }
 
 @layer base {

@@ -25,7 +25,7 @@ export default function UranightLandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#1F224B] via-[#4A3A70] to-[#6B4F9B] text-white font-noto">
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
-        {Array.from({ length: 100 }).map((_, i) => (
+        {Array.from({ length: typeof window !== 'undefined' && window.innerWidth < 768 ? 30 : 100 }).map((_, i) => (
           <div
             key={i}
             className="absolute bg-white rounded-full twinkle-star"
@@ -50,17 +50,17 @@ export default function UranightLandingPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <h1 className="font-julius text-5xl md:text-7xl tracking-wider">Uranight</h1>
-            <p className="mt-4 text-lg md:text-2xl text-gray-200">あなたの夜空に運命の星を</p>
+            <h1 className="font-julius text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider">Uranight</h1>
+            <p className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200">あなたの夜空に運命の星を</p>
           </motion.div>
           <motion.p
-            className="mt-8 max-w-2xl mx-auto text-base md:text-lg text-gray-300"
+            className="mt-8 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-gray-300 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             夜空に散りばめられた星のひかりで、
-            <br />
+            <br className="hidden sm:inline" />
             あなただけの愛の物語を照らす運命のサイン。
           </motion.p>
           <motion.div
@@ -71,10 +71,11 @@ export default function UranightLandingPage() {
           >
             <Button
               size="lg"
-              className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-lg py-6 px-8 rounded-full shadow-lg shadow-green-500/30 transition-all duration-300 transform hover:scale-105"
+              className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-sm sm:text-base md:text-lg py-4 sm:py-5 md:py-6 px-4 sm:px-6 md:px-8 rounded-full shadow-lg shadow-green-500/30 transition-all duration-300 transform hover:scale-105"
             >
-              <LineIcon className="w-7 h-7 mr-3" />
-              今すぐLINEで恋愛運を診断
+              <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mr-2 sm:mr-3" />
+              <span className="hidden sm:inline">今すぐLINEで恋愛運を診断</span>
+              <span className="sm:hidden">恋愛運を診断</span>
             </Button>
           </motion.div>
           <motion.div
@@ -83,25 +84,26 @@ export default function UranightLandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            <Image
-              src="/uranight-love-fortune-mockup.png"
-              alt="Uranight App Mockup"
-              width={280}
-              height={560}
-              className="rounded-3xl shadow-2xl shadow-[#F7C8B0]/20 border-2 border-white/20"
-              priority
-            />
+            <div className="relative w-[200px] h-[400px] sm:w-[240px] sm:h-[480px] md:w-[280px] md:h-[560px]">
+              <Image
+                src="/uranight-love-fortune-mockup.png"
+                alt="Uranight App Mockup"
+                fill
+                className="object-contain rounded-3xl shadow-2xl shadow-[#F7C8B0]/20 border-2 border-white/20"
+                priority
+              />
+            </div>
           </motion.div>
         </section>
 
         {/* Features Section */}
         <MotionSection className="py-20 px-4 bg-[#1F224B]/50">
           <div className="container mx-auto text-center">
-            <h2 className="font-julius text-3xl md:text-4xl">あなただけの愛の物語を紐解く</h2>
+            <h2 className="font-julius text-2xl sm:text-3xl md:text-4xl">あなただけの愛の物語を紐解く</h2>
             <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
               伝統的な占術と最新のAI技術が融合し、あなたの恋愛を多角的に分析。運命の人との出会いから、関係の深化までをサポートします。
             </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-12">
               <FeatureCard
                 icon={<Heart className="w-10 h-10 text-[#F7C8B0]" />}
                 title="恋愛運診断"
@@ -127,8 +129,8 @@ export default function UranightLandingPage() {
         {/* Uniqueness Section */}
         <MotionSection className="py-20 px-4">
           <div className="container mx-auto text-center">
-            <h2 className="font-julius text-3xl md:text-4xl">Uranightが選ばれる理由</h2>
-            <div className="mt-12 grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+            <h2 className="font-julius text-2xl sm:text-3xl md:text-4xl">Uranightが選ばれる理由</h2>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 max-w-5xl mx-auto">
               <UniquePoint
                 icon={<Wand2 className="w-12 h-12 text-[#F7C8B0]" />}
                 title="四柱推命 × AI分析"
@@ -151,10 +153,10 @@ export default function UranightLandingPage() {
         {/* How to Use Section */}
         <MotionSection className="py-20 px-4 bg-[#1F224B]/50">
           <div className="container mx-auto text-center">
-            <h2 className="font-julius text-3xl md:text-4xl">簡単3ステップで始める</h2>
+            <h2 className="font-julius text-2xl sm:text-3xl md:text-4xl">簡単3ステップで始める</h2>
             <div className="relative mt-16 max-w-4xl mx-auto">
               <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/20 -translate-y-1/2 hidden md:block"></div>
-              <div className="grid md:grid-cols-3 gap-12">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
                 <HowToStep
                   step="1"
                   title="LINEで友だち追加"
@@ -181,18 +183,18 @@ export default function UranightLandingPage() {
         {/* CTA Section */}
         <MotionSection className="py-24 px-4 text-center">
           <div className="container mx-auto">
-            <h2 className="font-julius text-4xl md:text-5xl">
+            <h2 className="font-julius text-2xl sm:text-3xl md:text-4xl lg:text-5xl px-4">
               さあ、あなたの夜空に
-              <br />
+              <br className="hidden sm:inline" />
               運命の星を探しにいきましょう
             </h2>
-            <p className="mt-6 text-lg text-gray-300">AIはいつでもあなたの味方です。</p>
+            <p className="mt-6 text-sm sm:text-base md:text-lg text-gray-300">AIはいつでもあなたの味方です。</p>
             <div className="mt-12">
               <Button
                 size="lg"
-                className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-xl py-8 px-10 rounded-full shadow-lg shadow-green-500/40 transition-all duration-300 transform hover:scale-105"
+                className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-base sm:text-lg md:text-xl py-4 sm:py-6 md:py-8 px-6 sm:px-8 md:px-10 rounded-full shadow-lg shadow-green-500/40 transition-all duration-300 transform hover:scale-105"
               >
-                <LineIcon className="w-8 h-8 mr-4" />
+                <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 mr-2 sm:mr-3 md:mr-4" />
                 無料であなたの恋を占う
               </Button>
             </div>
@@ -224,7 +226,7 @@ const FeatureCard = ({
   imageSrc,
 }: { icon: React.ReactNode; title: string; description: string; imageSrc: string }) => (
   <motion.div
-    className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10 h-full flex flex-col"
+    className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center border border-white/10 h-full flex flex-col"
     whileHover={{
       y: -10,
       boxShadow: "0 20px 25px -5px rgba(247, 200, 176, 0.1), 0 8px 10px -6px rgba(247, 200, 176, 0.1)",
@@ -232,27 +234,28 @@ const FeatureCard = ({
     transition={{ duration: 0.3 }}
   >
     <div className="flex-grow">
-      <div className="mx-auto bg-[#6B4F9B]/50 rounded-full w-20 h-20 flex items-center justify-center mb-4">{icon}</div>
-      <h3 className="font-julius text-xl mb-2 text-white">{title}</h3>
-      <p className="text-gray-300 text-sm">{description}</p>
+      <div className="mx-auto bg-[#6B4F9B]/50 rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-4">{icon}</div>
+      <h3 className="font-julius text-lg sm:text-xl mb-2 text-white">{title}</h3>
+      <p className="text-gray-300 text-xs sm:text-sm">{description}</p>
     </div>
-    <div className="mt-6">
-      <Image
-        src={imageSrc || "/placeholder.svg"}
-        alt={`${title} Mockup`}
-        width={180}
-        height={360}
-        className="rounded-2xl mx-auto shadow-lg"
-      />
+    <div className="mt-4 sm:mt-6">
+      <div className="relative w-[140px] h-[280px] sm:w-[160px] sm:h-[320px] md:w-[180px] md:h-[360px] mx-auto">
+        <Image
+          src={imageSrc || "/placeholder.svg"}
+          alt={`${title} Mockup`}
+          fill
+          className="object-contain rounded-2xl shadow-lg"
+        />
+      </div>
     </div>
   </motion.div>
 )
 
 const UniquePoint = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
-  <div className="flex flex-col items-center">
+  <div className="flex flex-col items-center text-center px-4">
     <div className="mb-4">{icon}</div>
-    <h3 className="font-julius text-xl mb-2 text-white">{title}</h3>
-    <p className="text-gray-300 text-sm">{description}</p>
+    <h3 className="font-julius text-lg sm:text-xl mb-2 text-white">{title}</h3>
+    <p className="text-gray-300 text-xs sm:text-sm">{description}</p>
   </div>
 )
 
@@ -262,14 +265,14 @@ const HowToStep = ({
   description,
   icon,
 }: { step: string; title: string; description: string; icon: React.ReactNode }) => (
-  <div className="relative z-10 flex flex-col items-center">
+  <div className="relative z-10 flex flex-col items-center text-center px-4">
     <div className="relative mb-4">
-      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#6B4F9B] to-[#F7C8B0] flex items-center justify-center text-white text-3xl font-bold font-julius shadow-lg">
+      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-[#6B4F9B] to-[#F7C8B0] flex items-center justify-center text-white text-2xl sm:text-3xl font-bold font-julius shadow-lg">
         {step}
       </div>
-      <div className="absolute -top-2 -right-2">{icon}</div>
+      <div className="absolute -top-2 -right-2 scale-75 sm:scale-100">{icon}</div>
     </div>
-    <h3 className="font-julius text-xl mt-4 mb-2 text-white">{title}</h3>
-    <p className="text-gray-300 text-sm">{description}</p>
+    <h3 className="font-julius text-lg sm:text-xl mt-4 mb-2 text-white">{title}</h3>
+    <p className="text-gray-300 text-xs sm:text-sm">{description}</p>
   </div>
 )
