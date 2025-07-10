@@ -12,6 +12,7 @@ import { Heart, Users, BookOpen, BrainCircuit, Smartphone, Database, Star, Spark
 import { FloatingCTA } from "@/components/floating-cta"
 import { QRCodeModal } from "@/components/qr-code-modal"
 import { FAQSection } from "@/components/faq-section"
+import { StarField } from "@/components/star-field"
 
 const MotionSection: FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
   <motion.section
@@ -48,22 +49,7 @@ export default function UranightLandingPage() {
 
   return (
     <div className="flex flex-col min-h-screen text-white font-noto relative">
-      <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
-        {Array.from({ length: typeof window !== 'undefined' && window.innerWidth < 768 ? 30 : 100 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-white rounded-full twinkle-star"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 1}px`,
-              height: `${Math.random() * 2 + 1}px`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 5 + 5}s`,
-            }}
-          />
-        ))}
-      </div>
+      <StarField />
 
       <main className="flex-grow">
         {/* Hero Section */}
