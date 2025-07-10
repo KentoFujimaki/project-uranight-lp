@@ -3,11 +3,15 @@
 import type React from "react"
 
 import type { FC } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { LineIcon } from "@/components/icons"
-import { Heart, Users, BookOpen, BrainCircuit, Smartphone, Database, Star, Sparkles, Wand2 } from "lucide-react"
+import { Heart, Users, BookOpen, BrainCircuit, Smartphone, Database, Star, Sparkles, Wand2, Clock, Gift, TrendingUp } from "lucide-react"
+import { FloatingCTA } from "@/components/floating-cta"
+import { QRCodeModal } from "@/components/qr-code-modal"
+import { FAQSection } from "@/components/faq-section"
 
 const MotionSection: FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
   <motion.section
@@ -22,6 +26,26 @@ const MotionSection: FC<{ children: React.ReactNode; className?: string }> = ({ 
 )
 
 export default function UranightLandingPage() {
+  const [qrModalOpen, setQrModalOpen] = useState(false)
+  const [userCount, setUserCount] = useState(28543)
+  
+  // ユーザー数のアニメーション
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setUserCount(prev => prev + Math.floor(Math.random() * 3))
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const handleCTAClick = () => {
+    // モバイルならディープリンク、PCならQRコード
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      window.open("https://line.me/R/ti/p/@uranight", "_blank")
+    } else {
+      setQrModalOpen(true)
+    }
+  }
+
   return (
     <div className="flex flex-col min-h-screen text-white font-noto relative">
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
@@ -74,13 +98,18 @@ export default function UranightLandingPage() {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Button
+              onClick={handleCTAClick}
               size="lg"
               className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-sm sm:text-base md:text-lg py-4 sm:py-5 md:py-6 px-4 sm:px-6 md:px-8 rounded-full shadow-lg shadow-green-500/30 transition-all duration-300 transform hover:scale-105"
             >
               <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mr-2 sm:mr-3" />
-              <span className="hidden sm:inline">今すぐLINEで恋愛運を診断</span>
-              <span className="sm:hidden">恋愛運を診断</span>
+              <span className="hidden sm:inline">友達追加で無料診断</span>
+              <span className="sm:hidden">無料診断</span>
             </Button>
+            <p className="mt-4 text-xs sm:text-sm text-yellow-300 animate-pulse">
+              <Gift className="inline w-4 h-4 mr-1" />
+              期間限定！初回診断無料
+            </p>
           </motion.div>
           <motion.div
             className="mt-16"
@@ -98,6 +127,35 @@ export default function UranightLandingPage() {
               />
             </div>
           </motion.div>
+        </section>
+        
+        {/* Social Proof Section */}
+        <section className="py-12 px-4 bg-black/30 backdrop-blur-sm">
+          <div className="container mx-auto text-center">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16">
+              <div className="flex items-center gap-3">
+                <TrendingUp className="w-8 h-8 text-[#F7C8B0]" />
+                <div className="text-left">
+                  <p className="text-2xl sm:text-3xl font-bold">{userCount.toLocaleString()}人</p>
+                  <p className="text-sm text-gray-300">が利用中</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Star className="w-8 h-8 text-yellow-400" />
+                <div className="text-left">
+                  <p className="text-2xl sm:text-3xl font-bold">★4.8</p>
+                  <p className="text-sm text-gray-300">ユーザー評価</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="w-8 h-8 text-[#F7C8B0]" />
+                <div className="text-left">
+                  <p className="text-2xl sm:text-3xl font-bold">3分</p>
+                  <p className="text-sm text-gray-300">で診断完了</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Features Section */}
@@ -127,6 +185,16 @@ export default function UranightLandingPage() {
                 imageSrc="/uranight-app-history.png"
               />
             </div>
+            <div className="mt-12">
+              <Button
+                onClick={handleCTAClick}
+                size="lg"
+                className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-full shadow-lg shadow-green-500/30"
+              >
+                <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+                友達追加で今すぐ診断
+              </Button>
+            </div>
           </div>
         </MotionSection>
 
@@ -150,6 +218,28 @@ export default function UranightLandingPage() {
                 title="あなたの恋愛データを記録"
                 description="鑑定結果は安全に保存され、あなたの恋愛パターンを分析。パーソナルな恋愛アドバイザーとして寄り添います。"
               />
+            </div>
+            <div className="mt-12 p-6 bg-gradient-to-r from-[#F7C8B0]/20 to-[#6B4F9B]/20 rounded-2xl backdrop-blur-sm border border-white/10 max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl font-bold mb-2">
+                <Gift className="inline w-6 h-6 mr-2 text-[#F7C8B0]" />
+                今だけの特別オファー！
+              </p>
+              <p className="text-sm sm:text-base text-gray-300 mb-4">
+                友達追加で以下の特典をプレゼント：
+              </p>
+              <ul className="text-left text-sm sm:text-base space-y-2 mb-6">
+                <li>✨ あなたの恋愛運勢レポート（通常1,980円→無料）</li>
+                <li>💕 相性診断1回無料クーポン</li>
+                <li>📅 毎月の恋愛運カレンダー</li>
+              </ul>
+              <Button
+                onClick={handleCTAClick}
+                size="lg"
+                className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold w-full sm:w-auto"
+              >
+                <LineIcon className="w-5 h-5 mr-2" />
+                特典を受け取る
+              </Button>
             </div>
           </div>
         </MotionSection>
@@ -184,6 +274,9 @@ export default function UranightLandingPage() {
           </div>
         </MotionSection>
 
+        {/* FAQ Section */}
+        <FAQSection onCTAClick={handleCTAClick} />
+
         {/* CTA Section */}
         <MotionSection className="py-24 px-4 text-center">
           <div className="container mx-auto">
@@ -195,14 +288,15 @@ export default function UranightLandingPage() {
             <p className="mt-6 text-sm sm:text-base md:text-lg text-gray-300">AIはいつでもあなたの味方です。</p>
             <div className="mt-12">
               <Button
+                onClick={handleCTAClick}
                 size="lg"
                 className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-base sm:text-lg md:text-xl py-4 sm:py-6 md:py-8 px-6 sm:px-8 md:px-10 rounded-full shadow-lg shadow-green-500/40 transition-all duration-300 transform hover:scale-105"
               >
                 <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 mr-2 sm:mr-3 md:mr-4" />
-                無料であなたの恋を占う
+                友達追加で無料診断を始める
               </Button>
             </div>
-            <p className="mt-6 text-sm text-gray-400">Uranightを友だち追加して診断を開始</p>
+            <p className="mt-6 text-sm text-gray-400">30秒で簡単登録・診断スタート</p>
           </div>
         </MotionSection>
       </main>
@@ -219,6 +313,8 @@ export default function UranightLandingPage() {
         </div>
         <p className="mt-4 text-xs text-gray-500">&copy; 2025 Uranight. All Rights Reserved.</p>
       </footer>
+      <FloatingCTA />
+      <QRCodeModal isOpen={qrModalOpen} onClose={() => setQrModalOpen(false)} />
     </div>
   )
 }
