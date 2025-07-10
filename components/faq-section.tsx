@@ -9,7 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
-import { LineIcon } from "@/components/icons"
+import Image from "next/image"
 import { MessageCircle } from "lucide-react"
 
 const faqs = [
@@ -94,7 +94,7 @@ export function FAQSection({ onCTAClick }: FAQSectionProps) {
             size="lg"
             className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-full shadow-lg shadow-green-500/30"
           >
-            <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+            <Image src="/LINE_Brand_icon.png" alt="LINE" width={24} height={24} className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
             友達追加して始める
           </Button>
         </div>

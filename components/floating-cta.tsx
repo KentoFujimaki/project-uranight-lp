@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { LineIcon } from "@/components/icons"
+import Image from "next/image"
 import { X } from "lucide-react"
 
 export function FloatingCTA() {
@@ -41,7 +41,7 @@ export function FloatingCTA() {
                 onClick={handleLineAdd}
                 className="bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base flex items-center gap-2 sm:gap-3 p-0"
               >
-                <LineIcon className="w-6 h-6 sm:w-8 sm:h-8" />
+                <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-6 h-6 sm:w-8 sm:h-8" />
                 <div className="text-left">
                   <div className="text-xs sm:text-sm">今なら無料診断！</div>
                   <div className="text-sm sm:text-base">友達追加はこちら</div>

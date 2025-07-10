@@ -2,7 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { LineIcon } from "@/components/icons"
+import Image from "next/image"
 import { QrCode, Smartphone } from "lucide-react"
 
 interface QRCodeModalProps {
@@ -34,7 +34,7 @@ export function QRCodeModal({ isOpen, onClose }: QRCodeModalProps) {
             onClick={() => window.open("https://line.me/R/ti/p/@uranight", "_blank")}
             className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-lg py-6 px-8 rounded-full shadow-lg shadow-green-500/30 w-full max-w-xs"
           >
-            <LineIcon className="w-6 h-6 mr-3" />
+            <Image src="/LINE_Brand_icon.png" alt="LINE" width={24} height={24} className="w-6 h-6 mr-3" />
             LINEで友達追加する
           </Button>
 

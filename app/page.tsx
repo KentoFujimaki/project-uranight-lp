@@ -7,7 +7,6 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { LineIcon } from "@/components/icons"
 import { Heart, Users, BookOpen, BrainCircuit, Smartphone, Database, Star, Sparkles, Wand2, Clock, Gift, TrendingUp } from "lucide-react"
 import { FloatingCTA } from "@/components/floating-cta"
 import { QRCodeModal } from "@/components/qr-code-modal"
@@ -73,9 +72,9 @@ export default function UranightLandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            夜空に散りばめられた星のひかりで、
+            もう一人で悩まない。
             <br className="hidden sm:inline" />
-            あなただけの愛の物語を照らす運命のサイン。
+            AIがあなたの恋をサポート！
           </motion.p>
           <motion.div
             className="mt-12"
@@ -88,7 +87,7 @@ export default function UranightLandingPage() {
               size="lg"
               className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-sm sm:text-base md:text-lg py-4 sm:py-5 md:py-6 px-4 sm:px-6 md:px-8 rounded-full shadow-lg shadow-green-500/30 transition-all duration-300 transform hover:scale-105"
             >
-              <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mr-2 sm:mr-3" />
+              <Image src="/LINE_Brand_icon.png" alt="LINE" width={28} height={28} className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mr-2 sm:mr-3" />
               <span className="hidden sm:inline">友達追加で無料診断</span>
               <span className="sm:hidden">無料診断</span>
             </Button>
@@ -177,7 +176,7 @@ export default function UranightLandingPage() {
                 size="lg"
                 className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-full shadow-lg shadow-green-500/30"
               >
-                <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+                <Image src="/LINE_Brand_icon.png" alt="LINE" width={24} height={24} className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                 友達追加で今すぐ診断
               </Button>
             </div>
@@ -223,7 +222,7 @@ export default function UranightLandingPage() {
                 size="lg"
                 className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold w-full sm:w-auto"
               >
-                <LineIcon className="w-5 h-5 mr-2" />
+                <Image src="/LINE_Brand_icon.png" alt="LINE" width={20} height={20} className="w-5 h-5 mr-2" />
                 特典を受け取る
               </Button>
             </div>
@@ -278,7 +277,7 @@ export default function UranightLandingPage() {
                 size="lg"
                 className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-base sm:text-lg md:text-xl py-4 sm:py-6 md:py-8 px-6 sm:px-8 md:px-10 rounded-full shadow-lg shadow-green-500/40 transition-all duration-300 transform hover:scale-105"
               >
-                <LineIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 mr-2 sm:mr-3 md:mr-4" />
+                <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 mr-2 sm:mr-3 md:mr-4" />
                 友達追加で無料診断を始める
               </Button>
             </div>
