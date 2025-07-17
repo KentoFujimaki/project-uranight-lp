@@ -44,7 +44,7 @@ export function FloatingCTA() {
                 <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-6 h-6 sm:w-8 sm:h-8" />
                 <div className="text-left">
                   <div className="text-xs sm:text-sm">今なら無料診断！</div>
-                  <div className="text-sm sm:text-base">友達追加はこちら</div>
+                  <div className="text-sm sm:text-base">恋愛運を診断する</div>
                 </div>
               </Button>
               <button

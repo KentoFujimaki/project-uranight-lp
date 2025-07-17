@@ -95,7 +95,7 @@ export function FAQSection({ onCTAClick }: FAQSectionProps) {
             className="bg-[#00C300] hover:bg-[#00B300] text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-full shadow-lg shadow-green-500/30"
           >
             <Image src="/LINE_Brand_icon.png" alt="LINE" width={24} height={24} className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
-            友達追加して始める
+無料で恋愛運を診断する
           </Button>
         </div>
       </div>
