@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { config } from "@/lib/config"
 import Image from "next/image"
 import { X } from "lucide-react"
 
@@ -22,7 +23,7 @@ export function FloatingCTA() {
 
   const handleLineAdd = () => {
     // LINE友達追加のディープリンク
-    window.open("https://line.me/R/ti/p/@uranight", "_blank")
+    window.open(config.lineAddFriendUrl, "_blank")
   }
 
   return (
@@ -43,8 +44,8 @@ export function FloatingCTA() {
               >
                 <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-6 h-6 sm:w-8 sm:h-8" />
                 <div className="text-left">
-                  <div className="text-xs sm:text-sm">今なら無料診断！</div>
-                  <div className="text-sm sm:text-base">恋愛運を診断する</div>
+                  <div className="text-xs sm:text-sm">初回診断無料！</div>
+                  <div className="text-sm sm:text-base">恋愛タイプを診断</div>
                 </div>
               </Button>
               <button
