@@ -28,7 +28,7 @@ export function HeroSection() {
         >
           あなただけの恋愛専門AI占い師
         </motion.p>
-        <h1 className="font-julius text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-wider text-white drop-shadow-[0_0_40px_rgba(247,200,176,0.4)]">
+        <h1 className="font-julius text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-wider text-white drop-shadow-[0_0_40px_rgba(247,200,176,0.4)]">
           URANIGHT
         </h1>
       </motion.div>
@@ -71,14 +71,14 @@ export function HeroSection() {
             ✨ 24時間いつでも、あなたの恋の悩みに寄り添います ✨
           </motion.p>
           
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
+          <div className="flex flex-wrap justify-center gap-2 px-2">
+            <span className="bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs sm:text-sm">
               #AI恋愛カウンセリング
             </span>
-            <span className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
+            <span className="bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs sm:text-sm">
               #相性診断
             </span>
-            <span className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
+            <span className="bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs sm:text-sm">
               #恋愛タイプ診断
             </span>
           </div>
@@ -92,9 +92,9 @@ export function HeroSection() {
           <Button
             onClick={handleCTAClick}
             size="lg"
-            className="bg-gradient-to-r from-line-green to-green-500 hover:from-green-500 hover:to-line-green text-white font-bold text-lg py-6 px-10 rounded-full shadow-xl shadow-green-500/40 transition-all duration-300 transform hover:scale-110 hover:shadow-green-500/60 relative overflow-hidden before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-500"
+            className="bg-gradient-to-r from-line-green to-green-500 hover:from-green-500 hover:to-line-green text-white font-bold text-base sm:text-lg py-5 sm:py-6 px-6 sm:px-10 rounded-full shadow-xl shadow-green-500/40 transition-all duration-300 transform hover:scale-105 sm:hover:scale-110 hover:shadow-green-500/60 relative overflow-hidden before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-500"
           >
-            <Image src="/LINE_Brand_icon.png" alt="LINE" width={24} height={24} className="w-6 h-6 mr-3" />
+            <Image src="/LINE_Brand_icon.png" alt="LINE" width={24} height={24} className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
             無料で恋愛タイプを診断する
           </Button>
           

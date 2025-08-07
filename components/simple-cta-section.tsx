@@ -14,7 +14,7 @@ export function SimpleCtaSection() {
   }
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-16 sm:py-20 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -22,28 +22,28 @@ export function SimpleCtaSection() {
         transition={{ duration: 0.6 }}
         className="container mx-auto max-w-4xl text-center"
       >
-        <h2 className="font-julius text-3xl sm:text-4xl md:text-5xl text-white mb-6">
+        <h2 className="font-julius text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-6">
           今すぐ恋愛運を変える
         </h2>
         
-        <p className="text-lg sm:text-xl text-gray-300 mb-8">
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8">
           AIがあなたの恋愛傾向を分析し、
-          <br />
+          <br className="hidden sm:block" />
           最適なアドバイスをお届けします
         </p>
 
-        <div className="space-y-4 mb-8">
+        <div className="space-y-3 sm:space-y-4 mb-8">
           <div className="flex items-center justify-center space-x-2 text-uranight-pink-beige">
-            <ArrowRight className="w-5 h-5" />
-            <p className="text-lg">初回診断は完全無料</p>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+            <p className="text-base sm:text-lg">初回診断は完全無料</p>
           </div>
           <div className="flex items-center justify-center space-x-2 text-uranight-pink-beige">
-            <ArrowRight className="w-5 h-5" />
-            <p className="text-lg">3分で恋愛タイプが分かる</p>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+            <p className="text-base sm:text-lg">3分で恋愛タイプが分かる</p>
           </div>
           <div className="flex items-center justify-center space-x-2 text-uranight-pink-beige">
-            <ArrowRight className="w-5 h-5" />
-            <p className="text-lg">いつでも解約可能</p>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+            <p className="text-base sm:text-lg">いつでも解約可能</p>
           </div>
         </div>
 
@@ -56,10 +56,10 @@ export function SimpleCtaSection() {
           <Button
             onClick={handleCTAClick}
             size="lg"
-            className="bg-line-green hover:bg-line-green/90 text-white font-bold text-xl py-8 px-12 rounded-full shadow-lg shadow-green-500/30 transform hover:scale-105 transition-all duration-300"
+            className="bg-line-green hover:bg-line-green/90 text-white font-bold text-base sm:text-lg md:text-xl py-6 sm:py-7 md:py-8 px-6 sm:px-8 md:px-12 rounded-full shadow-lg shadow-green-500/30 transform hover:scale-105 transition-all duration-300 w-full max-w-sm sm:max-w-md mx-auto"
           >
-            <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-8 h-8 mr-4" />
-            無料で恋愛タイプを診断する
+            <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mr-2 sm:mr-3 md:mr-4 flex-shrink-0" />
+            <span className="whitespace-nowrap">無料で恋愛タイプを診断する</span>
           </Button>
         </motion.div>
 
