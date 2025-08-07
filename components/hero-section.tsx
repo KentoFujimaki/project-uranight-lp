@@ -20,24 +20,56 @@ export function HeroSection() {
         transition={{ duration: 1, delay: 0.2 }}
         className="z-10"
       >
-        <h1 className="font-julius text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wide text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
-          Uranight
-        </h1>
-        <p className="mt-6 text-xl sm:text-2xl md:text-3xl text-gray-200 font-medium">
+        <motion.p 
+          className="mb-8 text-lg sm:text-xl md:text-2xl bg-gradient-to-r from-uranight-pink-beige via-white to-uranight-pink-beige bg-clip-text text-transparent font-medium"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0.8, 1] }}
+          transition={{ duration: 2, times: [0, 0.5, 0.8, 1] }}
+        >
           あなただけの恋愛専門AI占い師
-        </p>
+        </motion.p>
+        <h1 className="font-julius text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-wider text-white drop-shadow-[0_0_40px_rgba(247,200,176,0.4)]">
+          URANIGHT
+        </h1>
+      </motion.div>
+
+      <motion.div
+        className="mt-16 z-10 w-full max-w-6xl"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+        whileHover={{ y: -5 }}
+      >
+        <motion.div 
+          className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/8] lg:aspect-[16/6]"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <Image
+            src="/hero_image.png"
+            alt="Uranight恋愛AI占い"
+            fill
+            className="object-contain"
+            priority
+          />
+        </motion.div>
       </motion.div>
 
       <motion.div
         className="mt-12 max-w-2xl mx-auto z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
       >
         <div className="space-y-6 mb-10">
-          <p className="text-lg sm:text-xl text-uranight-pink-beige">
-            24時間いつでも、あなたの恋の悩みに寄り添います
-          </p>
+          <motion.p 
+            className="text-lg sm:text-xl text-uranight-pink-beige"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+          >
+            ✨ 24時間いつでも、あなたの恋の悩みに寄り添います ✨
+          </motion.p>
           
           <div className="flex flex-wrap justify-center gap-3">
             <span className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
@@ -55,12 +87,12 @@ export function HeroSection() {
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.8 }}
+          transition={{ duration: 0.4, delay: 1.1 }}
         >
           <Button
             onClick={handleCTAClick}
             size="lg"
-            className="bg-line-green hover:bg-line-green/90 text-white font-bold text-lg py-6 px-8 rounded-full shadow-lg shadow-green-500/30 transition-all duration-300 transform hover:scale-105"
+            className="bg-gradient-to-r from-line-green to-green-500 hover:from-green-500 hover:to-line-green text-white font-bold text-lg py-6 px-10 rounded-full shadow-xl shadow-green-500/40 transition-all duration-300 transform hover:scale-110 hover:shadow-green-500/60 relative overflow-hidden before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-500"
           >
             <Image src="/LINE_Brand_icon.png" alt="LINE" width={24} height={24} className="w-6 h-6 mr-3" />
             無料で恋愛タイプを診断する
@@ -70,23 +102,6 @@ export function HeroSection() {
             今なら初回診断無料・いつでも解約OK
           </p>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="mt-16 z-10"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1 }}
-      >
-        <div className="relative w-[240px] h-[480px] sm:w-[280px] sm:h-[560px]">
-          <Image
-            src="/uranight-love-fortune-mockup.png"
-            alt="Uranight恋愛AI占い"
-            fill
-            className="object-contain rounded-3xl shadow-2xl shadow-uranight-pink-beige/20"
-            priority
-          />
-        </div>
       </motion.div>
     </section>
   )
