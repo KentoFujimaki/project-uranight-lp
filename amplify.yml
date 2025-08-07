@@ -3,11 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - pnpm install
+        - npm ci --legacy-peer-deps
     build:
       commands:
         - echo "NEXT_PUBLIC_LINE_ADD_FRIEND_URL=$NEXT_PUBLIC_LINE_ADD_FRIEND_URL" >> .env
-        - pnpm run build
+        - npm run build
   artifacts:
     baseDirectory: .next
     files:

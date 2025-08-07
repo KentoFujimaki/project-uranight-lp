@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- **Development server**: `pnpm dev` or `npm run dev`
-- **Build production**: `pnpm build` or `npm run build`
-- **Start production**: `pnpm start` or `npm run start`
-- **Linting**: `pnpm lint` or `npm run lint`
+- **Development server**: `npm run dev`
+- **Build production**: `npm run build`
+- **Start production**: `npm run start`
+- **Linting**: `npm run lint`
 
-Note: This project uses pnpm as indicated by the lockfile, prefer pnpm commands.
+Note: This project uses npm with --legacy-peer-deps flag due to dependency compatibility requirements.
 
 ## Architecture Overview
 
