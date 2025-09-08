@@ -13,8 +13,7 @@ interface QRCodeModalProps {
 }
 
 export function QRCodeModal({ isOpen, onClose }: QRCodeModalProps) {
-  const ua = typeof navigator !== 'undefined' ? navigator.userAgent : ''
-  const inTikTok = isTikTok(ua)
+  const inTikTok = isTikTok()
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -47,7 +46,7 @@ export function QRCodeModal({ isOpen, onClose }: QRCodeModalProps) {
 
           {/* 公式「友だち追加」ボタン（画像+lin.ee） */}
           <a href={config.lineAddFriendUrl} target="_blank" rel="noopener noreferrer" className="block">
-            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" width={116} height={36} />
+            <Image src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" width={116} height={36} />
           </a>
 
           <div className="flex items-center gap-2 text-sm text-gray-300">

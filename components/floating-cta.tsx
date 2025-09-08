@@ -33,8 +33,7 @@ export function FloatingCTA() {
       })
     } catch {}
 
-    const ua = typeof navigator !== 'undefined' ? navigator.userAgent : ''
-    if (isTikTok(ua)) {
+    if (isTikTok()) {
       setOpenModal(true)
       return
     }

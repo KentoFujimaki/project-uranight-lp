@@ -19,8 +19,7 @@ export function HeroSection() {
         label: "無料で恋愛タイプを診断する",
       })
     } catch {}
-    const ua = typeof navigator !== 'undefined' ? navigator.userAgent : ''
-    if (isTikTok(ua)) {
+    if (isTikTok()) {
       setOpenModal(true)
       return
     }

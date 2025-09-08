@@ -21,8 +21,7 @@ export function SimpleCtaSection() {
       })
     } catch {}
 
-    const ua = typeof navigator !== 'undefined' ? navigator.userAgent : ''
-    if (isTikTok(ua)) {
+    if (isTikTok()) {
       setOpenModal(true)
       return
     }
