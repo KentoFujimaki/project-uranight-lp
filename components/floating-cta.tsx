@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { config } from "@/lib/config"
 import Image from "next/image"
 import { X } from "lucide-react"
+import { sendGAEvent } from "@next/third-parties/google"
 
 export function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false)
@@ -22,6 +23,12 @@ export function FloatingCTA() {
   }, [])
 
   const handleLineAdd = () => {
+    try {
+      sendGAEvent("event", "cta_click", {
+        section: "floating",
+        label: "恋愛タイプを診断（フローティング）",
+      })
+    } catch {}
     // LINE友達追加のディープリンク
     window.open(config.lineAddFriendUrl, "_blank")
   }
@@ -49,7 +56,12 @@ export function FloatingCTA() {
                 </div>
               </Button>
               <button
-                onClick={() => setIsMinimized(true)}
+                onClick={() => {
+                  try {
+                    sendGAEvent("event", "floating_cta_close", {})
+                  } catch {}
+                  setIsMinimized(true)
+                }}
                 className="ml-4 text-white/70 hover:text-white transition-colors"
                 aria-label="閉じる"
               >
