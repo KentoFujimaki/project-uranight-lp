@@ -5,12 +5,11 @@ import { Button } from "@/components/ui/button"
 import { config } from "@/lib/config"
 import Image from "next/image"
 import { sendGAEvent } from "@next/third-parties/google"
-import { useState } from "react"
-import { isTikTok } from "@/lib/utils"
+import { useTikTokModal } from "@/hooks/use-tiktok-modal"
 import { QRCodeModal } from "@/components/qr-code-modal"
 
 export function HeroSection() {
-  const [openModal, setOpenModal] = useState(false)
+  const { isModalOpen, setModalOpen, shouldOpenModal } = useTikTokModal()
 
   const handleCTAClick = () => {
     try {
@@ -19,10 +18,7 @@ export function HeroSection() {
         label: "無料で恋愛タイプを診断する",
       })
     } catch {}
-    if (isTikTok()) {
-      setOpenModal(true)
-      return
-    }
+    if (shouldOpenModal()) return
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       window.open(config.lineAddFriendUrl, "_blank")
     }
@@ -30,7 +26,7 @@ export function HeroSection() {
 
   return (
     <section className="relative text-center py-20 px-4 flex flex-col items-center min-h-[90vh] justify-center">
-      <QRCodeModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      <QRCodeModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

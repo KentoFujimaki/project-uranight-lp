@@ -1,19 +1,20 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { config } from "@/lib/config"
 import Image from "next/image"
 import { X } from "lucide-react"
 import { sendGAEvent } from "@next/third-parties/google"
-import { isTikTok } from "@/lib/utils"
 import { QRCodeModal } from "@/components/qr-code-modal"
+import { useTikTokModal } from "@/hooks/use-tiktok-modal"
+import { useState } from "react"
 
 export function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
+  const { isModalOpen, setModalOpen, shouldOpenModal } = useTikTokModal()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,11 +34,7 @@ export function FloatingCTA() {
       })
     } catch {}
 
-    if (isTikTok()) {
-      setOpenModal(true)
-      return
-    }
-    // 通常はLIN.EEを新規タブで開く
+    if (shouldOpenModal()) return
     window.open(config.lineAddFriendUrl, "_blank")
   }
 
@@ -82,7 +79,7 @@ export function FloatingCTA() {
         )}
       </AnimatePresence>
 
-      <QRCodeModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      <QRCodeModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </>
   )
 }

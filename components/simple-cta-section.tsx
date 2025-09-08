@@ -6,12 +6,11 @@ import { config } from "@/lib/config"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { sendGAEvent } from "@next/third-parties/google"
-import { useState } from "react"
-import { isTikTok } from "@/lib/utils"
+import { useTikTokModal } from "@/hooks/use-tiktok-modal"
 import { QRCodeModal } from "@/components/qr-code-modal"
 
 export function SimpleCtaSection() {
-  const [openModal, setOpenModal] = useState(false)
+  const { isModalOpen, setModalOpen, shouldOpenModal } = useTikTokModal()
 
   const handleCTAClick = () => {
     try {
@@ -21,10 +20,7 @@ export function SimpleCtaSection() {
       })
     } catch {}
 
-    if (isTikTok()) {
-      setOpenModal(true)
-      return
-    }
+    if (shouldOpenModal()) return
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       window.open(config.lineAddFriendUrl, "_blank")
     }
@@ -32,7 +28,7 @@ export function SimpleCtaSection() {
 
   return (
     <section className="py-16 sm:py-20 px-4">
-      <QRCodeModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      <QRCodeModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

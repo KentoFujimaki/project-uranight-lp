@@ -7,7 +7,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
 }
 
@@ -16,6 +16,7 @@ const config = {
   ...nextConfig,
   images: {
     ...(nextConfig?.images || {}),
+    unoptimized: false,
     remotePatterns: [
       ...((nextConfig?.images?.remotePatterns) || []),
       {

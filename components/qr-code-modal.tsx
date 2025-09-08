@@ -34,8 +34,7 @@ export function QRCodeModal({ isOpen, onClose }: QRCodeModalProps) {
 
           {/* QRコード（本番QRへ差し替え推奨） */}
           <div className="bg-white p-4 rounded-2xl">
-            {/* ここに本番のQRコード画像URLを設定してください */}
-            <Image src="/placeholder.svg" alt="LINE友だち追加QR" width={192} height={192} />
+            <Image src={config.lineQRCodeUrl} alt="LINE友だち追加QR" width={192} height={192} />
             <p className="text-center text-black text-xs mt-2">※QRコードが読み取れない場合はボタンをタップ</p>
           </div>
           
