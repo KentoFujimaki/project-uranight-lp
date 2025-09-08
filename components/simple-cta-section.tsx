@@ -6,8 +6,12 @@ import { config } from "@/lib/config"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { sendGAEvent } from "@next/third-parties/google"
+import { useTikTokModal } from "@/hooks/use-tiktok-modal"
+import { QRCodeModal } from "@/components/qr-code-modal"
 
 export function SimpleCtaSection() {
+  const { isModalOpen, setModalOpen, shouldOpenModal } = useTikTokModal()
+
   const handleCTAClick = () => {
     try {
       sendGAEvent("event", "cta_click", {
@@ -15,6 +19,8 @@ export function SimpleCtaSection() {
         label: "無料で恋愛タイプを診断する",
       })
     } catch {}
+
+    if (shouldOpenModal()) return
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       window.open(config.lineAddFriendUrl, "_blank")
     }
@@ -22,6 +28,7 @@ export function SimpleCtaSection() {
 
   return (
     <section className="py-16 sm:py-20 px-4">
+      <QRCodeModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

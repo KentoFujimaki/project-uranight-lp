@@ -7,8 +7,24 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
 }
 
-export default nextConfig
+/** @type {import('next').NextConfig} */
+const config = {
+  ...nextConfig,
+  images: {
+    ...(nextConfig?.images || {}),
+    unoptimized: false,
+    remotePatterns: [
+      ...((nextConfig?.images?.remotePatterns) || []),
+      {
+        protocol: 'https',
+        hostname: 'scdn.line-apps.com'
+      }
+    ]
+  }
+}
+
+export default config
