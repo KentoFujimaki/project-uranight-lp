@@ -6,8 +6,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // in-app browser detection (simple UA-based)
+function getUserAgent(userAgent?: string): string {
+  return (userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : '')).toLowerCase()
+}
+
 export function isInAppBrowser(userAgent?: string): boolean {
-  const ua = (userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : '')).toLowerCase()
+  const ua = getUserAgent(userAgent)
   if (!ua) return false
   return (
     ua.includes('fb_iab') ||
@@ -21,6 +25,6 @@ export function isInAppBrowser(userAgent?: string): boolean {
 }
 
 export function isTikTok(userAgent?: string): boolean {
-  const ua = (userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : '')).toLowerCase()
+  const ua = getUserAgent(userAgent)
   return ua.includes('tiktok')
 }
