@@ -7,10 +7,13 @@ import { config } from "@/lib/config"
 import Image from "next/image"
 import { X } from "lucide-react"
 import { sendGAEvent } from "@next/third-parties/google"
+import { isTikTok } from "@/lib/utils"
+import { QRCodeModal } from "@/components/qr-code-modal"
 
 export function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,48 +32,58 @@ export function FloatingCTA() {
         label: "恋愛タイプを診断（フローティング）",
       })
     } catch {}
-    // LINE友達追加のディープリンク
+
+    const ua = typeof navigator !== 'undefined' ? navigator.userAgent : ''
+    if (isTikTok(ua)) {
+      setOpenModal(true)
+      return
+    }
+    // 通常はLIN.EEを新規タブで開く
     window.open(config.lineAddFriendUrl, "_blank")
   }
 
   return (
-    <AnimatePresence>
-      {isVisible && !isMinimized && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed bottom-4 left-4 right-4 z-50 sm:left-auto sm:right-6 sm:bottom-6"
-        >
-          <div className="bg-gradient-to-r from-[#00C300] to-[#00B300] rounded-full shadow-2xl shadow-green-500/50 p-1">
-            <div className="bg-black/20 backdrop-blur-sm rounded-full px-4 py-3 sm:px-6 sm:py-4 flex items-center justify-between">
-              <Button
-                onClick={handleLineAdd}
-                className="bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base flex items-center gap-2 sm:gap-3 p-0"
-              >
-                <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-6 h-6 sm:w-8 sm:h-8" />
-                <div className="text-left">
-                  <div className="text-xs sm:text-sm">初回診断無料！</div>
-                  <div className="text-sm sm:text-base">恋愛タイプを診断</div>
-                </div>
-              </Button>
-              <button
-                onClick={() => {
-                  try {
-                    sendGAEvent("event", "floating_cta_close", {})
-                  } catch {}
-                  setIsMinimized(true)
-                }}
-                className="ml-4 text-white/70 hover:text-white transition-colors"
-                aria-label="閉じる"
-              >
-                <X className="w-5 h-5" />
-              </button>
+    <>
+      <AnimatePresence>
+        {isVisible && !isMinimized && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed bottom-4 left-4 right-4 z-50 sm:left-auto sm:right-6 sm:bottom-6"
+          >
+            <div className="bg-gradient-to-r from-[#00C300] to-[#00B300] rounded-full shadow-2xl shadow-green-500/50 p-1">
+              <div className="bg-black/20 backdrop-blur-sm rounded-full px-4 py-3 sm:px-6 sm:py-4 flex items-center justify-between">
+                <Button
+                  onClick={handleLineAdd}
+                  className="bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base flex items-center gap-2 sm:gap-3 p-0"
+                >
+                  <Image src="/LINE_Brand_icon.png" alt="LINE" width={32} height={32} className="w-6 h-6 sm:w-8 sm:h-8" />
+                  <div className="text-left">
+                    <div className="text-xs sm:text-sm">初回診断無料！</div>
+                    <div className="text-sm sm:text-base">恋愛タイプを診断</div>
+                  </div>
+                </Button>
+                <button
+                  onClick={() => {
+                    try {
+                      sendGAEvent("event", "floating_cta_close", {})
+                    } catch {}
+                    setIsMinimized(true)
+                  }}
+                  className="ml-4 text-white/70 hover:text-white transition-colors"
+                  aria-label="閉じる"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <QRCodeModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+    </>
   )
 }
