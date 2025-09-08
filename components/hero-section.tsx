@@ -4,9 +4,16 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { config } from "@/lib/config"
 import Image from "next/image"
+import { sendGAEvent } from "@next/third-parties/google"
 
 export function HeroSection() {
   const handleCTAClick = () => {
+    try {
+      sendGAEvent("event", "cta_click", {
+        section: "hero",
+        label: "無料で恋愛タイプを診断する",
+      })
+    } catch {}
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       window.open(config.lineAddFriendUrl, "_blank")
     }
@@ -88,6 +95,15 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4, delay: 1.1 }}
+          onViewportEnter={() => {
+            try {
+              sendGAEvent("event", "cta_view", {
+                section: "hero",
+                label: "無料で恋愛タイプを診断する",
+              })
+            } catch {}
+          }}
+          viewport={{ once: true }}
         >
           <Button
             onClick={handleCTAClick}

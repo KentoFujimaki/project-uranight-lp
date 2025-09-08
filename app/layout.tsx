@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Julius_Sans_One, Noto_Sans_JP } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
+import { GoogleAnalytics } from "@next/third-parties/google"
 
 const julius = Julius_Sans_One({
   subsets: ["latin"],
@@ -31,6 +32,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={cn("antialiased", julius.variable, notoSansJp.variable)}>{children}</body>
+      {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ? (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+      ) : null}
     </html>
   )
 }

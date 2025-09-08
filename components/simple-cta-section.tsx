@@ -5,9 +5,16 @@ import { Button } from "@/components/ui/button"
 import { config } from "@/lib/config"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
+import { sendGAEvent } from "@next/third-parties/google"
 
 export function SimpleCtaSection() {
   const handleCTAClick = () => {
+    try {
+      sendGAEvent("event", "cta_click", {
+        section: "simple",
+        label: "無料で恋愛タイプを診断する",
+      })
+    } catch {}
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       window.open(config.lineAddFriendUrl, "_blank")
     }
@@ -52,6 +59,14 @@ export function SimpleCtaSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
+          onViewportEnter={() => {
+            try {
+              sendGAEvent("event", "cta_view", {
+                section: "simple",
+                label: "無料で恋愛タイプを診断する",
+              })
+            } catch {}
+          }}
         >
           <Button
             onClick={handleCTAClick}
